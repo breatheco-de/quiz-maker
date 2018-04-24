@@ -17,8 +17,9 @@ export default class NewQuestion extends React.Component {
                 <button 
                 type="button" 
                 className="btn btn-primary"
-                onClick={this.newQuestion.bind(this)}
-                >Nueva Pregunta</button>
+                onClick={this.newQuestion.bind(this)}>
+                    <i className="fas fa-plus-circle"></i> Add Question
+                </button>
             </div>
 		);
 	}

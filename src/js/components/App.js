@@ -1,7 +1,7 @@
 import React from 'react';
-import BannerHeader from './BannerHeader';
 import GetQuiz from './GetQuiz';
 import ShowQuiz from './ShowQuiz';
+import logo from '../../img/logo.png';
 
 import 'jquery';
 
@@ -21,7 +21,12 @@ export default class App extends React.Component {
 	render () {
 		return (
             <div>
-                <BannerHeader titleBanner={this.state.titleBanner}/>
+    			<nav className="navbar fixed-top navbar-light bg-light">
+    				<a className="navbar-brand" href="#">
+    					<img src={logo} width="30" height="30" className="d-inline-block align-top mr-2" alt="" />
+    					Quiz Maker - BreatheCode
+    				</a>
+    			</nav>
                 {
                     (this.state.url) ? 
                         <ShowQuiz data={this.state.url}/>

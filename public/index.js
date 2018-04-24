@@ -124,7 +124,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/public/";
 /******/
 /******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
 /******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
@@ -154,10 +154,21 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".no-margin {\n  margin: 0px; }\n\n.no-padding {\n  padding: 0px; }\n\n.banner-header {\n  padding: 55px 0px;\n  background-color: #3f3f3f; }\n  .banner-header .title {\n    color: #ffffff;\n    font-size: 30px; }\n\n.show {\n  position: fixed;\n  top: 5%;\n  right: 1%; }\n\n.hidden {\n  display: none !important; }\n\n.section-url {\n  padding-top: 60px; }\n\n.section-question {\n  padding-top: 60px; }\n\n.questions {\n  padding-top: 60px; }\n  .questions button {\n    margin-bottom: 30px; }\n", ""]);
+exports.push([module.i, "body {\n  padding-top: 50px; }\n\n.no-margin {\n  margin: 0px; }\n\n.no-padding {\n  padding: 0px; }\n\n.show {\n  position: fixed;\n  top: 5%;\n  right: 1%; }\n\n.hidden {\n  display: none !important; }\n\n.section-url {\n  padding-top: 60px; }\n\n.section-question {\n  padding-top: 30px;\n  background: #e8f5ff; }\n\n.questions {\n  padding-top: 30px; }\n  .questions .option {\n    height: 40px; }\n\n.download-btn {\n  position: fixed;\n  top: 8px;\n  right: 10px;\n  z-index: 1030; }\n\n.questions-nav.sticky-top {\n  top: 56px; }\n", ""]);
 
 // exports
 
+
+/***/ }),
+
+/***/ "./src/img/logo.png":
+/*!**************************!*\
+  !*** ./src/img/logo.png ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "logo.png";
 
 /***/ }),
 
@@ -181,10 +192,6 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _BannerHeader = __webpack_require__(/*! ./BannerHeader */ "./src/js/components/BannerHeader.js");
-
-var _BannerHeader2 = _interopRequireDefault(_BannerHeader);
-
 var _GetQuiz = __webpack_require__(/*! ./GetQuiz */ "./src/js/components/GetQuiz.js");
 
 var _GetQuiz2 = _interopRequireDefault(_GetQuiz);
@@ -192,6 +199,10 @@ var _GetQuiz2 = _interopRequireDefault(_GetQuiz);
 var _ShowQuiz = __webpack_require__(/*! ./ShowQuiz */ "./src/js/components/ShowQuiz.js");
 
 var _ShowQuiz2 = _interopRequireDefault(_ShowQuiz);
+
+var _logo = __webpack_require__(/*! ../../img/logo.png */ "./src/img/logo.png");
+
+var _logo2 = _interopRequireDefault(_logo);
 
 __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
@@ -229,7 +240,16 @@ var App = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_BannerHeader2.default, { titleBanner: this.state.titleBanner }),
+                _react2.default.createElement(
+                    'nav',
+                    { className: 'navbar fixed-top navbar-light bg-light' },
+                    _react2.default.createElement(
+                        'a',
+                        { className: 'navbar-brand', href: '#' },
+                        _react2.default.createElement('img', { src: _logo2.default, width: '30', height: '30', className: 'd-inline-block align-top mr-2', alt: '' }),
+                        'Quiz Maker - BreatheCode'
+                    )
+                ),
                 this.state.url ? _react2.default.createElement(_ShowQuiz2.default, { data: this.state.url }) : _react2.default.createElement(_GetQuiz2.default, { onSelect: this.urlAPI.bind(this) })
             );
         }
@@ -239,75 +259,6 @@ var App = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = App;
-
-/***/ }),
-
-/***/ "./src/js/components/BannerHeader.js":
-/*!*******************************************!*\
-  !*** ./src/js/components/BannerHeader.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var BannerHeader = function (_React$Component) {
-	_inherits(BannerHeader, _React$Component);
-
-	function BannerHeader() {
-		_classCallCheck(this, BannerHeader);
-
-		return _possibleConstructorReturn(this, (BannerHeader.__proto__ || Object.getPrototypeOf(BannerHeader)).call(this));
-	}
-
-	_createClass(BannerHeader, [{
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
-				'div',
-				{ className: 'row' },
-				_react2.default.createElement(
-					'div',
-					{ className: 'col-sm-12 banner-header' },
-					this.props.titleBanner ? _react2.default.createElement(
-						'h1',
-						{ className: 'text-center title no-margin' },
-						this.props.titleBanner
-					) : _react2.default.createElement(
-						'h1',
-						{ className: 'text-center title no-margin' },
-						'QUIZ 4Geeks'
-					)
-				)
-			);
-		}
-	}]);
-
-	return BannerHeader;
-}(_react2.default.Component);
-
-exports.default = BannerHeader;
 
 /***/ }),
 
@@ -376,44 +327,45 @@ var GetQuiz = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'container' },
+                { className: 'alert alert-primary' },
                 _react2.default.createElement(
-                    'div',
-                    { className: 'row justify-content-center section-url' },
+                    'h4',
+                    { className: 'alert-heading' },
+                    'Load Quiz from URL'
+                ),
+                _react2.default.createElement(
+                    'form',
+                    { onSubmit: this.handleSubmit.bind(this) },
                     _react2.default.createElement(
                         'div',
-                        { className: 'col-12' },
+                        { className: 'form-row' },
                         _react2.default.createElement(
-                            'h1',
-                            { className: 'text-center' },
-                            'Get API'
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-6' },
+                            'div',
+                            { className: 'form-group col-md-8' },
+                            _react2.default.createElement('input', {
+                                className: 'form-control',
+                                type: 'text',
+                                value: this.state.value,
+                                onChange: this.handleChange.bind(this),
+                                placeholder: 'JSON URL HERE'
+                            })
+                        ),
                         _react2.default.createElement(
-                            'form',
-                            { onSubmit: this.handleSubmit.bind(this) },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'form-group' },
-                                _react2.default.createElement(
-                                    'label',
-                                    null,
-                                    'URL JSON'
-                                ),
-                                _react2.default.createElement('input', {
-                                    className: 'form-control',
-                                    type: 'text',
-                                    value: this.state.value,
-                                    onChange: this.handleChange.bind(this)
-                                })
-                            ),
+                            'div',
+                            { className: 'form-group col' },
                             _react2.default.createElement(
                                 'button',
-                                { type: 'submit', className: 'btn btn-primary' },
-                                'Submit'
+                                { type: 'submit', className: 'btn btn-light form-control' },
+                                'Load quiz'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'form-group col' },
+                            _react2.default.createElement(
+                                'button',
+                                { type: 'button', className: 'btn btn-light form-control' },
+                                'Start a new one'
                             )
                         )
                     )
@@ -528,19 +480,14 @@ var Info = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'section-question' },
-                _react2.default.createElement(
-                    'h2',
-                    { className: 'text-center title-info' },
-                    'Principal Info'
-                ),
+                { className: 'section-question p-4' },
                 _react2.default.createElement(
                     'div',
                     { className: 'form-group' },
                     _react2.default.createElement(
                         'label',
                         null,
-                        'Name Quiz'
+                        'Quiz title'
                     ),
                     _react2.default.createElement('input', {
                         type: 'text',
@@ -555,7 +502,7 @@ var Info = function (_React$Component) {
                     _react2.default.createElement(
                         'label',
                         null,
-                        'Main Quiz'
+                        'Description shown to the student before starting the quiz'
                     ),
                     _react2.default.createElement('input', {
                         type: 'text',
@@ -570,7 +517,7 @@ var Info = function (_React$Component) {
                     _react2.default.createElement(
                         'label',
                         null,
-                        'Result Quiz'
+                        'Last message once the quiz is over'
                     ),
                     _react2.default.createElement('input', {
                         type: 'text',
@@ -646,9 +593,9 @@ var NewQuestion = function (_React$Component) {
           {
             type: "button",
             className: "btn btn-primary",
-            onClick: this.newQuestion.bind(this)
-          },
-          "Nueva Pregunta"
+            onClick: this.newQuestion.bind(this) },
+          _react2.default.createElement("i", { className: "fas fa-plus-circle" }),
+          " Add Question"
         )
       );
     }
@@ -804,7 +751,7 @@ var Questions = function (_React$Component) {
 			options = this.state.valueOption.map(function (value, key) {
 				return _react2.default.createElement(
 					'div',
-					{ className: 'row', key: key },
+					{ className: 'row option', key: key },
 					_react2.default.createElement(
 						'div',
 						{ className: 'col-8' },
@@ -839,8 +786,8 @@ var Questions = function (_React$Component) {
 						{ className: 'col-2' },
 						_react2.default.createElement(
 							'button',
-							{ className: 'btn btn-danger' },
-							_react2.default.createElement('i', { 'class': 'fas fa-trash-alt' })
+							{ className: 'btn text-danger' },
+							_react2.default.createElement('i', { className: 'fas fa-trash-alt text-danger' })
 						)
 					)
 				);
@@ -862,18 +809,13 @@ var Questions = function (_React$Component) {
 					'button',
 					{
 						type: 'button',
-						className: 'btn btn-danger',
+						className: 'btn text-danger float-right',
 						onClick: this.handleDeleteQuestion.bind(this) },
-					'Eliminar pregunta'
+					'delete question'
 				),
 				_react2.default.createElement(
 					'div',
 					{ className: 'form-group' },
-					_react2.default.createElement(
-						'label',
-						null,
-						'Question:'
-					),
 					_react2.default.createElement('input', {
 						className: 'form-control',
 						type: 'text',
@@ -883,7 +825,21 @@ var Questions = function (_React$Component) {
 						}
 					})
 				),
-				options
+				options,
+				_react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-12' },
+						_react2.default.createElement(
+							'button',
+							{ className: 'btn text-primary' },
+							_react2.default.createElement('i', { className: 'fas fa-plus-circle' }),
+							' new option'
+						)
+					)
+				)
 			);
 		}
 	}]);
@@ -959,7 +915,6 @@ var ShowQuiz = function (_React$Component) {
 	_createClass(ShowQuiz, [{
 		key: 'componentWillMount',
 		value: function componentWillMount() {
-			console.log('Se monto');
 			this.getApi();
 		}
 	}, {
@@ -975,7 +930,6 @@ var ShowQuiz = function (_React$Component) {
 					apiQuestions: data.questions,
 					apiBadges: data.info.badges
 				});
-				console.log(_this2.state.apiBadges);
 			}).catch(function (error) {
 				console.log('error', error);
 			});
@@ -999,11 +953,13 @@ var ShowQuiz = function (_React$Component) {
 			this.setState({
 				apiQuestions: [].concat(_toConsumableArray(this.state.apiQuestions), [newQuestion])
 			});
+			setTimeout(function () {
+				return window.scrollTo(0, document.body.scrollHeight);
+			}, 500);
 		}
 	}, {
 		key: 'handleDeleteQuestion',
 		value: function handleDeleteQuestion(data, i) {
-			console.log('entro');
 			var filteredQuestions = this.state.apiQuestions.filter(function (el) {
 				return el != data;
 			});
@@ -1019,8 +975,6 @@ var ShowQuiz = function (_React$Component) {
 		value: function getValueFromInfo(data, type, key) {
 			var api = this.state.apiQuestions;
 			var dataFromComponent = data;
-			console.log(data);
-			console.log(type);
 
 			if (type.typeRequest == 'question') {
 				//recorremos el api
@@ -1034,7 +988,6 @@ var ShowQuiz = function (_React$Component) {
 				this.setState({
 					apiQuestions: result
 				});
-				console.log(result);
 			} else if (type.typeRequest == 'info') {}
 		}
 	}, {
@@ -1067,13 +1020,40 @@ var ShowQuiz = function (_React$Component) {
 			});
 			return _react2.default.createElement(
 				'div',
-				{ className: 'container' },
+				{ className: 'container-fluid p-0' },
 				_react2.default.createElement(
 					'button',
-					{ onClick: function onClick() {
+					{ className: 'btn btn-primary download-btn', onClick: function onClick() {
 							return _this3.download("quiz.json", JSON.stringify(_this3.state.apiQuestions));
 						} },
-					'download'
+					_react2.default.createElement('i', { className: 'fas fa-download' }),
+					' download progress'
+				),
+				_react2.default.createElement(
+					'nav',
+					{ className: 'navbar navbar-dark bg-dark' },
+					_react2.default.createElement(
+						'a',
+						{ className: 'navbar-brand', href: '#' },
+						'General Quiz Information'
+					)
+				),
+				_react2.default.createElement(_Info2.default, { data: this.state.apiInfo, onJson: function onJson(data, type) {
+						return _this3.getValueFromInfo(data, type);
+					} }),
+				_react2.default.createElement(
+					'nav',
+					{ className: 'questions-nav navbar sticky-top navbar-dark bg-dark' },
+					_react2.default.createElement(
+						'a',
+						{ className: 'navbar-brand', href: '#' },
+						'Questions'
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'ml-auto' },
+						_react2.default.createElement(_NewQuestion2.default, { onClick: this.handleNewQuestion.bind(this) })
+					)
 				),
 				_react2.default.createElement(
 					'div',
@@ -1081,22 +1061,7 @@ var ShowQuiz = function (_React$Component) {
 					_react2.default.createElement(
 						'div',
 						{ className: 'col-10 mx-auto' },
-						_react2.default.createElement(_Info2.default, {
-							data: this.state.apiInfo,
-							onJson: function onJson(data, type) {
-								return _this3.getValueFromInfo(data, type);
-							} }),
-						_react2.default.createElement(
-							'div',
-							{ className: 'section-question' },
-							_react2.default.createElement(
-								'h2',
-								{ className: 'text-center' },
-								'Questions'
-							),
-							results
-						),
-						_react2.default.createElement(_NewQuestion2.default, { onClick: this.handleNewQuestion.bind(this) })
+						results
 					)
 				)
 			);
@@ -1132,13 +1097,21 @@ var _faTrashAlt = __webpack_require__(/*! @fortawesome/fontawesome-free-solid/fa
 
 var _faTrashAlt2 = _interopRequireDefault(_faTrashAlt);
 
+var _faPlusCircle = __webpack_require__(/*! @fortawesome/fontawesome-free-solid/faPlusCircle */ "./node_modules/@fortawesome/fontawesome-free-solid/faPlusCircle.js");
+
+var _faPlusCircle2 = _interopRequireDefault(_faPlusCircle);
+
+var _faDownload = __webpack_require__(/*! @fortawesome/fontawesome-free-solid/faDownload */ "./node_modules/@fortawesome/fontawesome-free-solid/faDownload.js");
+
+var _faDownload2 = _interopRequireDefault(_faDownload);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _fontawesome2.default.config = {
   autoReplaceSvg: 'nest'
 }; /* global FontAwesomeConfig */
 
-_fontawesome2.default.library.add(_faCheck2.default, _faTrashAlt2.default);
+_fontawesome2.default.library.add(_faCheck2.default, _faTrashAlt2.default, _faPlusCircle2.default, _faDownload2.default);
 
 /***/ }),
 

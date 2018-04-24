@@ -94,7 +94,7 @@ export default class Questions extends React.Component {
 	render () {
 		let options = null;
 		options = this.state.valueOption.map((value, key) =>
-			(<div className="row" key={key}>
+			(<div className="row option" key={key}>
 				<div className="col-8">
 					<input 
 						className="form-control" 
@@ -115,8 +115,8 @@ export default class Questions extends React.Component {
 					/>
 				</div>
 				<div className="col-2">
-					<button className="btn btn-danger">
-						<i class="fas fa-trash-alt"></i>
+					<button className="btn text-danger">
+						<i className="fas fa-trash-alt text-danger"></i>
 					</button>
 				</div>
 			</div>));
@@ -130,12 +130,10 @@ export default class Questions extends React.Component {
 				</div>
 				<button 
 					type="button" 
-					className="btn btn-danger" 
-					onClick={this.handleDeleteQuestion.bind(this)}>Eliminar pregunta
+					className="btn text-danger float-right" 
+					onClick={this.handleDeleteQuestion.bind(this)}>delete question
 				</button>
 				<div className="form-group">
-					<label>Question:
-					</label>
 					<input
 						className="form-control"
 						type="text"
@@ -144,6 +142,11 @@ export default class Questions extends React.Component {
 					/>
 				</div>
 				{options}
+				<div className="row">
+					<div className="col-12">
+						<button className="btn text-primary"><i className="fas fa-plus-circle"></i> new option</button>
+					</div>
+				</div>
             </div>
 		);
 	}

@@ -1,20 +1,14 @@
 @import 'colors';
 
+body{
+    padding-top: 50px;
+}
 .no-margin{
     margin: 0px;
 }
 
 .no-padding{
     padding: 0px;
-}
-
-.banner-header{
-    padding: 55px 0px;
-    background-color: $grey;
-    .title{
-        color: $white;
-        font-size: 30px;
-    }
 }
 
 .show{
@@ -32,12 +26,24 @@
 }
 
 .section-question{
-    padding-top: 60px;
+    padding-top: 30px;
+    background: #e8f5ff;
 }
 
 .questions{
-    padding-top: 60px;
-    button{
-        margin-bottom: 30px;
+    padding-top: 30px;
+    .option{
+        height: 40px;
     }
+}
+
+.download-btn{
+    position: fixed;
+    top: 8px;
+    right: 10px;
+    z-index: 1030;
+}
+
+.questions-nav.sticky-top{
+    top: 56px;
 }

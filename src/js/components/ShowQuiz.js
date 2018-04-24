@@ -17,7 +17,6 @@ export default class ShowQuiz extends React.Component {
 	}
 
 	componentWillMount(){
-		console.log('Se monto');
 		this.getApi();
 	}
 
@@ -32,7 +31,6 @@ export default class ShowQuiz extends React.Component {
 				apiQuestions: data.questions,
 				apiBadges: data.info.badges
 			});
-			console.log(this.state.apiBadges);
 		})
 		.catch(function(error){
 			console.log('error', error);
@@ -60,10 +58,11 @@ export default class ShowQuiz extends React.Component {
 		this.setState({
 			apiQuestions: [...this.state.apiQuestions, newQuestion]
 		});
+		setTimeout(() => window.scrollTo(0,document.body.scrollHeight), 500);
+		
 	}
 
 	handleDeleteQuestion(data, i){
-		console.log('entro');
 		let filteredQuestions = this.state.apiQuestions.filter(el => el != data );
 		this.setState(({
 			apiQuestions: filteredQuestions
@@ -75,8 +74,6 @@ export default class ShowQuiz extends React.Component {
 	getValueFromInfo(data, type, key){
 		const api = this.state.apiQuestions;
 		const dataFromComponent = data;
-		console.log(data);
-		console.log(type);
 
 		if(type.typeRequest == 'question'){
 			//recorremos el api
@@ -90,7 +87,6 @@ export default class ShowQuiz extends React.Component {
 			this.setState({
 				apiQuestions: result
 			})
-			console.log(result);
 		}else if(type.typeRequest == 'info'){
 
 		}
@@ -117,18 +113,27 @@ export default class ShowQuiz extends React.Component {
 														onJson={(data, type)=>this.getValueFromInfo(data, type, key)}
 														onSelect={()=>this.handleDeleteQuestion(value, key)}/>);
 		return (
-			<div className="container">
-				<button onClick={()=>this.download("quiz.json",JSON.stringify(this.state.apiQuestions))}>download</button>
+			<div className="container-fluid p-0">
+				<button className="btn btn-primary download-btn" onClick={()=>this.download("quiz.json",JSON.stringify(this.state.apiQuestions))}>
+					<i className="fas fa-download"></i> download progress
+				</button>
+    			<nav className="navbar navbar-dark bg-dark">
+    				<a className="navbar-brand" href="#">
+    					General Quiz Information
+    				</a>
+    			</nav>
+				<Info data={this.state.apiInfo} onJson={(data, type) => this.getValueFromInfo(data, type)}/>
+    			<nav className="questions-nav navbar sticky-top navbar-dark bg-dark">
+    				<a className="navbar-brand" href="#">
+    					Questions
+    				</a>
+    				<div className="ml-auto">
+    					<NewQuestion onClick={this.handleNewQuestion.bind(this)}/>
+    				</div>
+    			</nav>
                 <div className="row">
                     <div className="col-10 mx-auto">
-						<Info 
-						data={this.state.apiInfo} 
-						onJson={(data, type) => this.getValueFromInfo(data, type)}/>
-						<div className="section-question">
-							<h2 className="text-center">Questions</h2>
-							{results}
-						</div>
-						<NewQuestion onClick={this.handleNewQuestion.bind(this)}/>
+						{results}
                     </div>
                 </div>
             </div>

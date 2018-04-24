@@ -11,6 +11,28 @@ module.exports = { prefix: 'fas', iconName: 'check', icon: [512, 512, [], "f00c"
 
 /***/ }),
 
+/***/ "./node_modules/@fortawesome/fontawesome-free-solid/faDownload.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@fortawesome/fontawesome-free-solid/faDownload.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = { prefix: 'fas', iconName: 'download', icon: [512, 512, [], "f019", "M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"] };
+
+/***/ }),
+
+/***/ "./node_modules/@fortawesome/fontawesome-free-solid/faPlusCircle.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@fortawesome/fontawesome-free-solid/faPlusCircle.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = { prefix: 'fas', iconName: 'plus-circle', icon: [512, 512, [], "f055", "M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"] };
+
+/***/ }),
+
 /***/ "./node_modules/@fortawesome/fontawesome-free-solid/faTrashAlt.js":
 /*!************************************************************************!*\
   !*** ./node_modules/@fortawesome/fontawesome-free-solid/faTrashAlt.js ***!

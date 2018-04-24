@@ -10,6 +10,7 @@ module.exports = {
   },
   output: {
     path: BUILD_DIR,
+    publicPath: '/public/',
     filename: '[name].js'
   },
   optimization: {
@@ -25,9 +26,9 @@ module.exports = {
   },
   module: {
   	rules: [
-  		{
-  			test: /\.js$/,
-  			exclude: /(node_modules)/,
+      	{
+      		test: /\.js$/,
+      		exclude: /(node_modules)/,
     			use: {
     				loader: 'babel-loader'
     			}
@@ -45,7 +46,13 @@ module.exports = {
       {
         test: /\.css$/,
         use: [ 'style-loader', 'css-loader' ]
-      }
+      },
+        { 
+          test: /\.(png|svg|jpg|gif)$/, use: {
+            loader: 'file-loader',
+            options: { name: '[name].[ext]' } 
+          }
+        } //for images
   	]
   },
   devtool: 'source-map',

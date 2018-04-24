@@ -58,10 +58,9 @@ export default class Info extends React.Component {
 
 	render () {
 		return (
-            <div className="section-question">
-                <h2 className="text-center title-info">Principal Info</h2>
+            <div className="section-question p-4">
                 <div className="form-group">
-                    <label>Name Quiz</label>
+                    <label>Quiz title</label>
                     <input 
                         type="text"
                         className="form-control"
@@ -70,7 +69,7 @@ export default class Info extends React.Component {
                     />
                 </div>
                     <div className="form-group">
-                        <label>Main Quiz</label>
+                        <label>Description shown to the student before starting the quiz</label>
                         <input
                             type="text"
                             className="form-control"
@@ -79,7 +78,7 @@ export default class Info extends React.Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Result Quiz</label>
+                        <label>Last message once the quiz is over</label>
                         <input
                             type="text"
                             className="form-control"

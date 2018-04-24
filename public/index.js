@@ -761,7 +761,8 @@ var Questions = function (_React$Component) {
 							value: value.option,
 							onChange: function onChange(event) {
 								return _this3.handleChangeOptions(event, key);
-							}
+							},
+							placeholder: 'Type your option value'
 						})
 					),
 					_react2.default.createElement(
@@ -822,7 +823,8 @@ var Questions = function (_React$Component) {
 						value: this.state.valueQuestion,
 						onChange: function onChange(event) {
 							return _this3.handleChangeQuestion(event);
-						}
+						},
+						placeholder: 'Type your question title'
 					})
 				),
 				options,
@@ -1060,7 +1062,7 @@ var ShowQuiz = function (_React$Component) {
 					{ className: 'row' },
 					_react2.default.createElement(
 						'div',
-						{ className: 'col-10 mx-auto' },
+						{ className: 'col-12 col-sm-10 col-md-8 col-xl-6 mx-auto' },
 						results
 					)
 				)

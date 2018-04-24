@@ -101,6 +101,7 @@ export default class Questions extends React.Component {
 						type="text"
 						value={value.option} 
 						onChange={(event) => this.handleChangeOptions(event, key)}
+						placeholder="Type your option value"
 					/>
 				</div>
 				<div className="col-2">
@@ -139,6 +140,7 @@ export default class Questions extends React.Component {
 						type="text"
 						value={this.state.valueQuestion}
 						onChange={(event) => this.handleChangeQuestion(event)}
+						placeholder="Type your question title"
 					/>
 				</div>
 				{options}

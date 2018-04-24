@@ -132,7 +132,7 @@ export default class ShowQuiz extends React.Component {
     				</div>
     			</nav>
                 <div className="row">
-                    <div className="col-10 mx-auto">
+                    <div className="col-12 col-sm-10 col-md-8 col-xl-6 mx-auto">
 						{results}
                     </div>
                 </div>

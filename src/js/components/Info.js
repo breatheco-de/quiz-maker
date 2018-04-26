@@ -9,6 +9,8 @@ export default class Info extends React.Component {
             nameInfo: '',
             mainInfo: '',
             resultInfo: '',
+            badges: [],
+            slug: ''
         }
     }
 
@@ -16,7 +18,9 @@ export default class Info extends React.Component {
         this.setState({
             nameInfo: props.data.name,
             mainInfo: props.data.main,
-            resultInfo: props.data.results
+            resultInfo: props.data.results,
+            slug: props.data.slug,
+            badges: props.data.badges
         })
     }
     
@@ -25,11 +29,13 @@ export default class Info extends React.Component {
 			nameInfo: event.target.value
         });
 
-        this.props.onJson({
+        this.props.handleJsonInfo({
             name: event.target.value,
             main: this.state.mainInfo,
-            result: this.state.resultInfo
-        }, {typeRequest: 'info'});
+            results: this.state.resultInfo,
+            badges: this.state.badges,
+            slug: this.state.slug
+        }, {typeRequest: 'name'});
     }
     
     handleChangeMain(event){
@@ -37,11 +43,13 @@ export default class Info extends React.Component {
 			mainInfo: event.target.value
         });
 
-        this.props.onJson({
+        this.props.handleJsonInfo({
             name: this.state.nameInfo,
             main: event.target.value,
-            result: this.state.resultInfo
-        }, {typeRequest: 'info'});
+            results: this.state.resultInfo,
+            badges: this.state.badges,
+            slug: this.state.slug
+        }, {typeRequest: 'nameMain'});
     }
 
     handleChangeResult(event){
@@ -49,14 +57,93 @@ export default class Info extends React.Component {
 			resultInfo: event.target.value
         });
 
-        this.props.onJson({
+        this.props.handleJsonInfo({
             name: this.state.nameInfo,
             main: this.state.mainInfo,
-            result: event.target.value
-        }, {typeRequest: 'info'});
+            results: event.target.value,
+            badges: this.state.badges,
+            slug: this.state.slug
+        }, {typeRequest: 'nameResult'});
+    }
+
+    handleChangeSlug(event, value, key){
+        this.setState({
+            slug: event.target.value
+        });
+
+        this.props.handleJsonInfo({
+            name: this.state.nameInfo,
+            main: this.state.mainInfo,
+            results: this.state.resultInfo,
+            badges: this.state.badges,
+            slug: event.target.value
+        }, {typeRequest: 'nameSlug'});
+    }
+
+    handleChangeNameBadges(event, value, key){
+        console.log(event, value, key);
+        let resultBadges = this.state.badges.map((data, id)=>{
+            if(key == id){
+                return ({slug: event.target.value, points: data.points })
+            }else{
+                return({slug: data.slug, points: data.points})
+            }
+        });
+        this.setState({
+            badges: resultBadges
+        });
+
+        this.props.handleJsonInfo({
+            name: this.state.nameInfo,
+            main: this.state.mainInfo,
+            results: this.state.resultInfo,
+            badges: resultBadges,
+            slug: this.state.slug
+        }, {typeRequest: 'nameBadges'});
+    }
+
+    handleChangePointBadges(event, value, key){
+        console.log(event, value, key);
+        let resultBadges = this.state.badges.map((data, id)=>{
+            if(key == id){
+                return ({slug: data.slug, points: event.target.value })
+            }else{
+                return({slug: data.slug, points: data.points})
+            }
+        });
+        this.setState({
+            badges: resultBadges
+        });
+
+        this.props.handleJsonInfo({
+            name: this.state.nameInfo,
+            main: this.state.mainInfo,
+            results: this.state.resultInfo,
+            badges: resultBadges,
+            slug: this.state.slug
+        }, {typeRequest: 'pointBadges'});
     }
 
 	render () {
+        let resultBadges = null;
+        resultBadges = this.state.badges.map((value, key) =>(
+                    <div className="form-group" key={key}>
+                        <label>Badges</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={value.slug}
+                            onChange={(event)=>this.handleChangeNameBadges(event, value, key)}
+                        />
+                        <label>Points</label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            value={value.points}
+                            onChange={(event)=>this.handleChangePointBadges(event, value, key)}
+                        />
+                    </div>
+        ));
 		return (
             <div className="section-question p-4">
                 <div className="form-group">
@@ -86,6 +173,16 @@ export default class Info extends React.Component {
                             onChange={this.handleChangeResult.bind(this)}
                         />
                     </div>
+                    <div className="form-group">
+                        <label>Slug</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.slug}
+                            onChange={this.handleChangeSlug.bind(this)}
+                        />
+                    </div>
+                    {resultBadges}
             </div>
 		);
 	}

@@ -12,7 +12,6 @@ export default class ShowQuiz extends React.Component {
 			apiBadges: [],
 			apiInfo: [],
 			apiQuestions: [],
-			api: []
 		}
 	}
 
@@ -30,7 +29,6 @@ export default class ShowQuiz extends React.Component {
 				apiInfo: data.info,
 				apiQuestions: data.questions,
 				apiBadges: data.info.badges,
-				api: data
 			});
 		})
 		.catch(function(error){
@@ -87,7 +85,6 @@ export default class ShowQuiz extends React.Component {
 			this.setState({
 				apiQuestions: resultQuestions
 			});
-
 		}else if(type.typeRequest == 'option'){
 			let resultOption = this.state.apiQuestions.map((value, idQ) =>{
 				if(idQuestion == idQ){
@@ -99,11 +96,29 @@ export default class ShowQuiz extends React.Component {
 			this.setState({
 				apiQuestions: resultOption
 			});
+		}else if(type.typeRequest == 'checkbox'){
+			let resultCheckbox = this.state.apiQuestions.map((value, idQ) =>{
+				if(idQuestion == idQ){
+					return({q: value.q, a: data})
+				}else{
+					return({q: value.q, a: value.a})
+				}
+			});
+			this.setState({
+				apiQuestions: resultCheckbox
+			});
 		}
 	}
 
-	getValueFromOption(data, type, key){
-		console.log(key);
+	getValueFromInfo(data, type){
+		console.log(data);
+		if(type.typeRequest == 'nameBadges' || type.typeRequest == 'pointBadges' || 
+			type.typeRequest == 'nameSlug' || type.typeRequest == 'nameResult' ||
+			type.typeRequest == 'nameMain' || type.typeRequest == 'name'){
+			this.setState({
+				apiInfo: data
+			})
+		}
 	}
 
 	download(filename, text) {
@@ -135,7 +150,7 @@ export default class ShowQuiz extends React.Component {
     					General Quiz Information
     				</a>
     			</nav>
-				<Info data={this.state.apiInfo} onJson={(data, type) => this.getValueFromInfo(data, type)}/>
+				<Info data={this.state.apiInfo} handleJsonInfo={(data, type) => this.getValueFromInfo(data, type)}/>
     			<nav className="questions-nav navbar sticky-top navbar-dark bg-dark">
     				<a className="navbar-brand" href="#">
     					Questions

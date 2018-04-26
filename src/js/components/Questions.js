@@ -64,7 +64,7 @@ export default class Questions extends React.Component {
 			this.setState({
 				valueOption: newOptions
 			});
-			this.props.handleJsonQuestion(newOptions);
+			this.props.handleJsonQuestion(newOptions, {typeRequest: 'checkbox'});
 		}else{
 			const newOptions = this.state.valueOption.map((opt, i)=> {
 				if(key == i){
@@ -76,7 +76,7 @@ export default class Questions extends React.Component {
 			this.setState({
 				valueOption: newOptions
 			});
-			this.props.handleJsonQuestion(newOptions);
+			this.props.handleJsonQuestion(newOptions, {typeRequest: 'checkbox'});
 		}
 	}
 

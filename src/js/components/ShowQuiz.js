@@ -12,6 +12,7 @@ export default class ShowQuiz extends React.Component {
 			apiBadges: [],
 			apiInfo: [],
 			apiQuestions: [],
+			json: []
 		}
 	}
 
@@ -72,7 +73,6 @@ export default class ShowQuiz extends React.Component {
 	
 	//Datos que recibo para modificar el json del API
 	getValueFromQuestion(data, type, idQuestion, idOption){
-		console.log(data, type, idQuestion, idOption);
 
 		if(type.typeRequest == 'question'){
 			let resultQuestions = this.state.apiQuestions.map((value, i) =>{
@@ -111,7 +111,7 @@ export default class ShowQuiz extends React.Component {
 	}
 
 	getValueFromInfo(data, type){
-		console.log(data);
+		console.log(this.state.apiQuestions);
 		if(type.typeRequest == 'nameBadges' || type.typeRequest == 'pointBadges' || 
 			type.typeRequest == 'nameSlug' || type.typeRequest == 'nameResult' ||
 			type.typeRequest == 'nameMain' || type.typeRequest == 'name'){
@@ -121,7 +121,19 @@ export default class ShowQuiz extends React.Component {
 		}
 	}
 
-	download(filename, text) {
+	download(filename) {
+		const buildJson = {
+			info: {
+				name: this.state.apiInfo.name,
+				main: this.state.apiInfo.main,
+				results: this.state.apiInfo.results,
+				badges: this.state.apiInfo.badges,
+				slug: this.state.apiInfo.slug
+			},
+			questions: this.state.apiQuestions
+		}
+		
+		const text = JSON.stringify(buildJson);
 		var element = document.createElement('a');
 		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
 		element.setAttribute('download', filename);
@@ -142,7 +154,7 @@ export default class ShowQuiz extends React.Component {
 														onSelect={()=>this.handleDeleteQuestion(value, key)}/>);
 		return (
 			<div className="container-fluid p-0">
-				<button className="btn btn-primary download-btn" onClick={()=>this.download("quiz.json",JSON.stringify(this.state.apiQuestions))}>
+				<button className="btn btn-primary download-btn" onClick={()=>this.download("quiz.json")}>
 					<i className="fas fa-download"></i> download progress
 				</button>
     			<nav className="navbar navbar-dark bg-dark">

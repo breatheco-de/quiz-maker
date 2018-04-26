@@ -10,7 +10,6 @@ module.exports = {
   },
   output: {
     path: BUILD_DIR,
-    publicPath: '/public/',
     filename: '[name].js'
   },
   optimization: {

@@ -32,7 +32,7 @@ export default class Questions extends React.Component {
 		this.setState({
 			valueQuestion: event.target.value
 		});
-		this.props.onJson(event.target.value, {typeRequest: 'question'});
+		this.props.handleJsonQuestion(event.target.value, {typeRequest: 'question'});
 	}
 
 	handleChangeOptions(event, key){
@@ -46,7 +46,7 @@ export default class Questions extends React.Component {
 		this.setState({
 			valueOption: newOptions
 		});
-		this.props.onJson(newOptions, {typeRequest: 'option'});
+		this.props.handleJsonQuestion(newOptions, {typeRequest: 'option'}, key);
 	}
 
 	handleChangeOptionsTrueFalse(event, key){
@@ -64,7 +64,7 @@ export default class Questions extends React.Component {
 			this.setState({
 				valueOption: newOptions
 			});
-			this.props.onJson(newOptions);
+			this.props.handleJsonQuestion(newOptions);
 		}else{
 			const newOptions = this.state.valueOption.map((opt, i)=> {
 				if(key == i){
@@ -76,7 +76,7 @@ export default class Questions extends React.Component {
 			this.setState({
 				valueOption: newOptions
 			});
-			this.props.onJson(newOptions);
+			this.props.handleJsonQuestion(newOptions);
 		}
 	}
 

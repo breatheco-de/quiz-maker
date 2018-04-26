@@ -12,7 +12,7 @@ export default class ShowQuiz extends React.Component {
 			apiBadges: [],
 			apiInfo: [],
 			apiQuestions: [],
-			json: []
+			api: []
 		}
 	}
 
@@ -29,7 +29,8 @@ export default class ShowQuiz extends React.Component {
 			this.setState({
 				apiInfo: data.info,
 				apiQuestions: data.questions,
-				apiBadges: data.info.badges
+				apiBadges: data.info.badges,
+				api: data
 			});
 		})
 		.catch(function(error){
@@ -37,6 +38,7 @@ export default class ShowQuiz extends React.Component {
 		})
 	}
 
+	//Agregar pregunta
 	handleNewQuestion(){
 		const newQuestion = {
 			q: '',
@@ -62,6 +64,7 @@ export default class ShowQuiz extends React.Component {
 		
 	}
 
+	//Eliminar pregunta
 	handleDeleteQuestion(data, i){
 		let filteredQuestions = this.state.apiQuestions.filter(el => el != data );
 		this.setState(({
@@ -69,27 +72,38 @@ export default class ShowQuiz extends React.Component {
 		}));
 	}
 	
-	//recibo los datos que cambio en Info.js
-	
-	getValueFromInfo(data, type, key){
-		const api = this.state.apiQuestions;
-		const dataFromComponent = data;
+	//Datos que recibo para modificar el json del API
+	getValueFromQuestion(data, type, idQuestion, idOption){
+		console.log(data, type, idQuestion, idOption);
 
 		if(type.typeRequest == 'question'){
-			//recorremos el api
-			let result = this.state.apiQuestions.map((value, i) =>{
-				if(key == i){
-					return {q: dataFromComponent, a: value.a}
+			let resultQuestions = this.state.apiQuestions.map((value, i) =>{
+				if(idQuestion == i){
+					return {q: data, a: value.a}
 				}else{
 					return {q: value.q, a: value.a}
 				}
-			})
+			});
 			this.setState({
-				apiQuestions: result
-			})
-		}else if(type.typeRequest == 'info'){
+				apiQuestions: resultQuestions
+			});
 
+		}else if(type.typeRequest == 'option'){
+			let resultOption = this.state.apiQuestions.map((value, idQ) =>{
+				if(idQuestion == idQ){
+					return({q: value.q, a: data})
+				}else{
+					return({q: value.q, a: value.a})
+				}
+			});
+			this.setState({
+				apiQuestions: resultOption
+			});
 		}
+	}
+
+	getValueFromOption(data, type, key){
+		console.log(key);
 	}
 
 	download(filename, text) {
@@ -101,7 +115,6 @@ export default class ShowQuiz extends React.Component {
 		element.click();
 		document.body.removeChild(element);
 	}
-	  
 
 	render () {
 		
@@ -110,7 +123,7 @@ export default class ShowQuiz extends React.Component {
 														key={key} 
 														data={value}
 														answer={value.a}
-														onJson={(data, type)=>this.getValueFromInfo(data, type, key)}
+														handleJsonQuestion={(data, type, idOption)=>this.getValueFromQuestion(data, type, key, idOption)}
 														onSelect={()=>this.handleDeleteQuestion(value, key)}/>);
 		return (
 			<div className="container-fluid p-0">

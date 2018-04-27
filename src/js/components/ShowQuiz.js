@@ -20,6 +20,7 @@ export default class ShowQuiz extends React.Component {
 		this.getApi();
 	}
 
+	//Consulta API
 	getApi(){
 		fetch(this.props.data)
 		.then(function(response) {
@@ -86,6 +87,22 @@ export default class ShowQuiz extends React.Component {
 			apiQuestions: filteredQuestions
 		}));
 	}
+
+	//Agregar nueva opcion a pregunta
+	handleNewOption(key){
+		let resultNewOption = this.state.apiQuestions.map((value, i) =>{
+			if(key == i){
+				value.a.push({option:'', correct: false});
+				return ({q: value.q, a: value.a})
+			}else{
+				return({q: value.q, a: value.a})
+			}
+		});
+
+		this.setState({
+			apiQuestions: resultNewOption
+		});
+	}
 	
 	//Datos que recibo para modificar el json del API
 	getValueFromQuestion(data, type, idQuestion, idOption){
@@ -101,7 +118,6 @@ export default class ShowQuiz extends React.Component {
 				apiQuestions: resultQuestions
 			});
 		}else if(type.typeRequest == 'option'){
-			console.log(data);
 			let resultOption = this.state.apiQuestions.map((value, idQ) =>{
 				if(idQuestion == idQ){
 					return({q: value.q, a: data})
@@ -127,7 +143,6 @@ export default class ShowQuiz extends React.Component {
 	}
 
 	getValueFromInfo(data, type){
-		console.log(this.state.apiQuestions);
 		if(type.typeRequest == 'nameBadges' || type.typeRequest == 'pointBadges' || 
 			type.typeRequest == 'nameSlug' || type.typeRequest == 'nameResult' ||
 			type.typeRequest == 'nameMain' || type.typeRequest == 'name'){
@@ -168,7 +183,8 @@ export default class ShowQuiz extends React.Component {
 														answer={value.a}
 														handleJsonQuestion={(data, type, idOption)=>this.getValueFromQuestion(data, type, key, idOption)}
 														onSelect={()=>this.handleDeleteQuestion(value, key)}
-														onDeleteOption={(value, idOption)=>this.handleDeleteOption(value, key, idOption)}/>);
+														onDeleteOption={(value, idOption)=>this.handleDeleteOption(value, key, idOption)}
+														onNewOption={()=>this.handleNewOption(key)}/>);
 		return (
 			<div className="container-fluid p-0">
 				<button className="btn btn-primary download-btn" onClick={()=>this.download("quiz.json")}>

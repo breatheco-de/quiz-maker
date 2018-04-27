@@ -92,8 +92,11 @@ export default class Questions extends React.Component {
 	}
 
 	handleDeleteOpcion(data, key){
-		
 		this.props.onDeleteOption(data, key);
+	}
+
+	handleNewOption(){
+		this.props.onNewOption();
 	}
 
 	render () {
@@ -151,7 +154,9 @@ export default class Questions extends React.Component {
 				{options}
 				<div className="row">
 					<div className="col-12">
-						<button className="btn text-primary"><i className="fas fa-plus-circle"></i> new option</button>
+						<button className="btn text-primary" onClick={() => this.handleNewOption()}>
+							<i className="fas fa-plus-circle"></i> new option
+						</button>
 					</div>
 				</div>
             </div>

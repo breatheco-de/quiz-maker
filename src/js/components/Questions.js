@@ -91,6 +91,11 @@ export default class Questions extends React.Component {
 		this.props.onSelect();
 	}
 
+	handleDeleteOpcion(data, key){
+		
+		this.props.onDeleteOption(data, key);
+	}
+
 	render () {
 		let options = null;
 		options = this.state.valueOption.map((value, key) =>
@@ -116,7 +121,7 @@ export default class Questions extends React.Component {
 					/>
 				</div>
 				<div className="col-2">
-					<button className="btn text-danger">
+					<button className="btn text-danger" onClick={() => this.handleDeleteOpcion(value, key)}>
 						<i className="fas fa-trash-alt text-danger"></i>
 					</button>
 				</div>

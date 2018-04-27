@@ -70,10 +70,25 @@ export default class ShowQuiz extends React.Component {
 			apiQuestions: filteredQuestions
 		}));
 	}
+
+	//Eliminar option de pregunta
+	handleDeleteOption(data, key, idOption){
+		let filteredQuestions = this.state.apiQuestions.map((value, i)=>{
+			if(key == i){
+				value.a.splice(idOption, 1)
+				return ({q: value.q, a: value.a})
+			}else{
+				return ({q: value.q, a: value.a})
+			}
+		});
+
+		this.setState(({
+			apiQuestions: filteredQuestions
+		}));
+	}
 	
 	//Datos que recibo para modificar el json del API
 	getValueFromQuestion(data, type, idQuestion, idOption){
-
 		if(type.typeRequest == 'question'){
 			let resultQuestions = this.state.apiQuestions.map((value, i) =>{
 				if(idQuestion == i){
@@ -86,6 +101,7 @@ export default class ShowQuiz extends React.Component {
 				apiQuestions: resultQuestions
 			});
 		}else if(type.typeRequest == 'option'){
+			console.log(data);
 			let resultOption = this.state.apiQuestions.map((value, idQ) =>{
 				if(idQuestion == idQ){
 					return({q: value.q, a: data})
@@ -151,7 +167,8 @@ export default class ShowQuiz extends React.Component {
 														data={value}
 														answer={value.a}
 														handleJsonQuestion={(data, type, idOption)=>this.getValueFromQuestion(data, type, key, idOption)}
-														onSelect={()=>this.handleDeleteQuestion(value, key)}/>);
+														onSelect={()=>this.handleDeleteQuestion(value, key)}
+														onDeleteOption={(value, idOption)=>this.handleDeleteOption(value, key, idOption)}/>);
 		return (
 			<div className="container-fluid p-0">
 				<button className="btn btn-primary download-btn" onClick={()=>this.download("quiz.json")}>

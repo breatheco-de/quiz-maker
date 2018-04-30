@@ -1,4 +1,5 @@
 import React from 'react';
+import NewBadges from './NewBadges';
 
 import 'jquery';
 
@@ -124,10 +125,55 @@ export default class Info extends React.Component {
         }, {typeRequest: 'pointBadges'});
     }
 
+    handleNewBadges(){
+		const newBadges = {
+			slug: '',
+			points: ''
+		}
+		this.setState({
+			badges: [...this.state.badges, newBadges]
+		});
+		
+    }
+
+    handleDeleteBadges(data, i){
+		let filteredBadges = this.state.badges.filter(el => el != data );
+		this.setState(({
+			badges: filteredBadges
+		}));
+	}
 	render () {
         let resultBadges = null;
         resultBadges = this.state.badges.map((value, key) =>(
-                    <div className="form-group" key={key}>
+            <div className="form-row" key={key}>
+				<div className="form-group col-md-4">
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={value.slug}
+                        onChange={(event)=>this.handleChangeNameBadges(event, value, key)}
+                        placeholder="Slug"
+                    />
+				</div>
+                <div className="form-group col-md-4">
+                    <input
+                        type="number"
+                        className="form-control"
+                        value={value.points}
+                        onChange={(event)=>this.handleChangePointBadges(event, value, key)}
+                        placeholder="Points"
+                    />
+                </div>
+                    <button 
+                        type="button"
+                        onClick={() => this.handleDeleteBadges(value, key)}
+                        className="btn text-danger float-right">delete
+                    </button>
+            </div>
+
+
+
+                    /*<div className="form-group" key={key}>
                         <label>Badges</label>
                         <input
                             type="text"
@@ -142,9 +188,10 @@ export default class Info extends React.Component {
                             value={value.points}
                             onChange={(event)=>this.handleChangePointBadges(event, value, key)}
                         />
-                    </div>
+                    </div>*/
         ));
 		return (
+            <div>
             <div className="section-question p-4">
                 <div className="form-group">
                     <label>Quiz title</label>
@@ -182,7 +229,22 @@ export default class Info extends React.Component {
                             onChange={this.handleChangeSlug.bind(this)}
                         />
                     </div>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <nav className="questions-nav navbar sticky-top navbar-dark bg-dark">
+                        <a className="navbar-brand" href="#">
+                            Badges
+                        </a>
+                        <div className="ml-auto">
+    					    <NewBadges onClick={this.handleNewBadges.bind(this)}/>
+    				    </div>
+                    </nav>
+                </div>
+                <div className="col-12 col-sm-10 col-md-8 col-xl-6 mx-auto badges">
                     {resultBadges}
+                </div>
+            </div>
             </div>
 		);
 	}

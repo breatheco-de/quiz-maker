@@ -151,10 +151,10 @@ export default class Questions extends React.Component {
 					onClick={this.handleDeleteQuestion.bind(this)}>delete question
 				</button>
 				<button className={"btn text-primary " + (this.props.firstQuestion ? "hidden" : "")} onClick={()=>this.handleUpQuestion()}>
-					<i className="fas fa-arrow-up"></i>subir
+					<i class="fas fa-arrow-circle-up"></i>
 				</button>
 				<button className={"btn text-primary " + (this.props.lastQuestion ? "hidden" : "")} onClick={()=>this.handleDownQuestion()}>
-					<i className="fas fa-arrow-down"></i>bajar
+					<i class="fas fa-arrow-circle-down"></i>
 				</button>
 				<div className="form-group">
 					<input

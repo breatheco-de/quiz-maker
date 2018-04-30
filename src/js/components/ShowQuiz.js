@@ -103,6 +103,41 @@ export default class ShowQuiz extends React.Component {
 			apiQuestions: resultNewOption
 		});
 	}
+
+	handleUpQuestion(key){
+		const arr = this.state.apiQuestions;
+		const old_index = key;
+		const new_index = key-1;
+		//this.handleActionUpQuestion(this.state.apiQuestions, old_index, new_index);
+		if (new_index >= arr.length) {
+			var k = new_index - arr.length + 1;
+			while (k--) {
+				arr.push(undefined);
+			}
+		}
+		arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+
+		this.setState({
+			apiQuestions: arr
+		})
+	}
+
+	handleDownQuestion(key){
+		const arr = this.state.apiQuestions;
+		const old_index = key;
+		const new_index = key+1;
+		if (new_index >= arr.length) {
+			var k = new_index - arr.length + 1;
+			while (k--) {
+				arr.push(undefined);
+			}
+		}
+		arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+
+		this.setState({
+			apiQuestions: arr
+		})
+	}
 	
 	//Datos que recibo para modificar el json del API
 	getValueFromQuestion(data, type, idQuestion, idOption){
@@ -176,15 +211,51 @@ export default class ShowQuiz extends React.Component {
 
 	render () {
 		
-		const results = this.state.apiQuestions.map((value, key) =>
-														<Questions 
-														key={key} 
-														data={value}
-														answer={value.a}
-														handleJsonQuestion={(data, type, idOption)=>this.getValueFromQuestion(data, type, key, idOption)}
-														onSelect={()=>this.handleDeleteQuestion(value, key)}
-														onDeleteOption={(value, idOption)=>this.handleDeleteOption(value, key, idOption)}
-														onNewOption={()=>this.handleNewOption(key)}/>);
+		const results = this.state.apiQuestions.map((value, key) => {
+							const lastQuestion = this.state.apiQuestions.length - 1;
+							if(key == 0){
+								return (
+									<Questions 
+									key={key} 
+									data={value}
+									answer={value.a}
+									handleJsonQuestion={(data, type, idOption)=>this.getValueFromQuestion(data, type, key, idOption)}
+									onSelect={()=>this.handleDeleteQuestion(value, key)}
+									onDeleteOption={(value, idOption)=>this.handleDeleteOption(value, key, idOption)}
+									onNewOption={()=>this.handleNewOption(key)}
+									onUpQuestion={()=>this.handleUpQuestion(key)}
+									onDownQuestion={()=>this.handleDownQuestion(key)}
+									firstQuestion={true}/>
+								)
+							}else if(key<lastQuestion){
+								return (
+									<Questions 
+									key={key} 
+									data={value}
+									answer={value.a}
+									handleJsonQuestion={(data, type, idOption)=>this.getValueFromQuestion(data, type, key, idOption)}
+									onSelect={()=>this.handleDeleteQuestion(value, key)}
+									onDeleteOption={(value, idOption)=>this.handleDeleteOption(value, key, idOption)}
+									onNewOption={()=>this.handleNewOption(key)}
+									onUpQuestion={()=>this.handleUpQuestion(key)}
+									onDownQuestion={()=>this.handleDownQuestion(key)}/>
+								)
+							}else{
+								return (
+									<Questions 
+									key={key} 
+									data={value}
+									answer={value.a}
+									handleJsonQuestion={(data, type, idOption)=>this.getValueFromQuestion(data, type, key, idOption)}
+									onSelect={()=>this.handleDeleteQuestion(value, key)}
+									onDeleteOption={(value, idOption)=>this.handleDeleteOption(value, key, idOption)}
+									onNewOption={()=>this.handleNewOption(key)}
+									onUpQuestion={()=>this.handleUpQuestion(key)}
+									onDownQuestion={()=>this.handleDownQuestion(key)}
+									lastQuestion={true}/>
+								)
+							}
+					});
 		return (
 			<div className="container-fluid p-0">
 				<button className="btn btn-primary download-btn" onClick={()=>this.download("quiz.json")}>

@@ -28,7 +28,7 @@ export default class Questions extends React.Component {
 		});
 	}
 
-	handleChangeQuestion(event, key){
+	handleChangeQuestion(event){
 		this.setState({
 			valueQuestion: event.target.value
 		});
@@ -99,6 +99,14 @@ export default class Questions extends React.Component {
 		this.props.onNewOption();
 	}
 
+	handleUpQuestion(){
+		this.props.onUpQuestion();
+	}
+
+	handleDownQuestion(){
+		this.props.onDownQuestion();
+	}
+
 	render () {
 		let options = null;
 		options = this.state.valueOption.map((value, key) =>
@@ -141,6 +149,12 @@ export default class Questions extends React.Component {
 					type="button" 
 					className="btn text-danger float-right" 
 					onClick={this.handleDeleteQuestion.bind(this)}>delete question
+				</button>
+				<button className={"btn text-primary " + (this.props.firstQuestion ? "hidden" : "")} onClick={()=>this.handleUpQuestion()}>
+					<i className="fas fa-arrow-up"></i>subir
+				</button>
+				<button className={"btn text-primary " + (this.props.lastQuestion ? "hidden" : "")} onClick={()=>this.handleDownQuestion()}>
+					<i className="fas fa-arrow-down"></i>bajar
 				</button>
 				<div className="form-group">
 					<input

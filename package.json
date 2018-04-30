@@ -4,11 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --open",
     "c9": "webpack-dev-server --mode development --open --host $IP --port 8080",
-    "dev": "webpack --mode development",
-    "webpack": "node_modules/.bin/webpack -d"
+    "build": "webpack --mode production"
   },
   "author": "",
   "license": "ISC",
